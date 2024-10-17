@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Excursión</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black">
+    <div class="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg relative mt-10">
+        <div class="absolute top-4 right-4">
+            <a href="/" class="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600">Cerrar</a>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Editar Excursión</h2>
+
+        <form th:action="@{/editar}" th:object="${excursion}" method="post" class="space-y-4">
+            
+            <!-- No dejo modificar el id -->
+            <div>
+                <label for="id" class="block text-sm font-medium text-gray-700">ID de Excursión:</label>
+                <input type="text" id="id" th:field="*{idExcursion}" readonly class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-gray-200 cursor-not-allowed focus:outline-none" />
+            </div>
+            
+            <div>
+                <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción:</label>
+                <textarea id="descripcion" th:field="*{descripcion}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" rows="4"></textarea>
+            </div>
+            <div>
+                <label for="origen" class="block text-sm font-medium text-gray-700">Origen:</label>
+                <input type="text" id="origen" th:field="*{origen}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" />
+            </div>
+            <div>
+                <label for="destino" class="block text-sm font-medium text-gray-700">Destino:</label>
+                <input type="text" id="destino" th:field="*{destino}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" />
+            </div>
+            <div>
+                <label for="fechaExcursion" class="block text-sm font-medium text-gray-700">Fecha de Excursión:</label>
+                <input type="date" id="fechaExcursion" th:field="*{fechaExcursion}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" />
+            </div>
+            <div>
+                <label for="duracion" class="block text-sm font-medium text-gray-700">Duración (horas):</label>
+                <input type="number" id="duracion" th:field="*{duracion}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" />
+            </div>
+            <div>
+                <label for="estado" class="block text-sm font-medium text-gray-700">Estado:</label>
+                <select id="estado" th:field="*{estado}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500">
+                    <option value="" disabled selected>Selecciona un estado</option>
+                    <option value="CREADO">CREADO</option>
+                    <option value="CANCELADO">CANCELADO</option>
+                    <option value="TERMINADO">TERMINADO</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Destacado:</label>
+                <div class="flex items-center space-x-4 mt-1">
+                    <label class="inline-flex items-center">
+                        <input type="radio" th:field="*{destacado}" value="S" required class="form-radio text-blue-600 focus:ring-blue-500">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" th:field="*{destacado}" value="N" required class="form-radio text-blue-600 focus:ring-blue-500">
+                        <span class="ml-2">No</span>
+                    </label>
+                </div>
+            </div>
+            <div>
+                <label for="aforoMaximo" class="block text-sm font-medium text-gray-700">Aforo Máximo:</label>
+                <input type="number" id="aforoMaximo" th:field="*{aforoMaximo}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" />
+            </div>
+            <div>
+                <label for="minimoAsistentes" class="block text-sm font-medium text-gray-700">Mínimo Asistentes:</label>
+                <input type="number" id="minimoAsistentes" th:field="*{minimoAsistentes}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" />
+            </div>
+            <div>
+                <label for="precioUnitario" class="block text-sm font-medium text-gray-700">Precio Unitario:</label>
+                <input type="number" step="0.01" id="precioUnitario" th:field="*{precioUnitario}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" />
+            </div>
+            <div>
+                <label for="imagen" class="block text-sm font-medium text-gray-700">Imagen URL:</label>
+                <input type="text" id="imagen" th:field="*{imagen}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" />
+            </div>
+            <div>
+                <label for="fechaAlta" class="block text-sm font-medium text-gray-700">Fecha de Alta:</label>
+                <input type="date" id="fechaAlta" th:field="*{fechaAlta}" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500" />
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 rounded-md hover:bg-blue-600">Actualizar Excursión</button>
+        </form>
+    </div>
+</body>
+</html>

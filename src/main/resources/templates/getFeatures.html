@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de excursiones</title>
+    <!-- Tailwind para dar estilo -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="min-h-screen flex flex-col bg-gray-100 text-gray-800">
+
+    <!-- HEADER -->
+    <header class="bg-black shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-red-600">
+                <a th:href="@{/}"> Gestión de Excursiones </a> 
+            </div>
+            <div class="space-x-4">
+                <a class="text-white hover:text-gray-400 transition duration-300 ease-in-out" th:href="@{/excursiones}">Todas las Excursiones</a>
+                <a class="text-white hover:text-gray-400 transition duration-300 ease-in-out" th:href="@{/activas}">Activas</a>
+                <a class="text-white hover:text-gray-400 transition duration-300 ease-in-out" th:href="@{/canceladas}">Canceladas</a>
+                <a class="text-white hover:text-gray-400 transition duration-300 ease-in-out" th:href="@{/finalizadas}">Finalizadas</a>
+                <a class="text-white hover:text-gray-400 transition duration-300 ease-in-out" th:href="@{/destacadas}">Destacadas</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- COMPONENTES -->
+    <section class="p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold">Listado de excursiones destacadas</h1>
+            <a class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors duration-200" th:href="@{/}">
+                Cerrar
+            </a>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white text-black">
+                <thead>
+                    <tr class="bg-black text-white uppercase text-sm leading-normal">
+                        <th class="py-3 px-6 text-left text-gray-400">Id</th>
+                        <th class="py-3 px-6 text-left">Descripción</th>
+                        <th class="py-3 px-6 text-left">Origen</th>
+                        <th class="py-3 px-6 text-left">Destino</th>
+                        <th class="py-3 px-6 text-left">Fecha</th>
+                        <th class="py-3 px-6 text-left">Precio</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700 text-sm font-light">
+                    <tr class="border-b border-gray-200 hover:bg-gray-100" th:each="excursionDestacada : ${excursionDestacada}">
+                        <td class="py-3 px-6 text-left" th:text="${excursionDestacada.idExcursion}"></td>
+                        <td class="py-3 px-6 text-left" th:text="${excursionDestacada.descripcion}"></td>
+                        <td class="py-3 px-6 text-left" th:text="${excursionDestacada.origen}"></td>
+                        <td class="py-3 px-6 text-left" th:text="${excursionDestacada.destino}"></td>
+                        <td class="py-3 px-6 text-left" th:text="${excursionDestacada.fechaExcursion}"></td>
+                        <td class="py-3 px-6 text-left" th:text="${excursionDestacada.precioUnitario} + ' €'"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-6 mt-auto">
+        <div class="container mx-auto flex justify-center items-center">
+            <div class="flex space-x-6">
+                <a href="https://github.com/diegoarnanz-maker" target="_blank" class="text-white hover:text-gray-400 transition duration-300 ease-in-out">
+                    <i class="fab fa-github text-2xl"></i> GitHub
+                </a>
+                <a href="https://diegoarnanz-maker-portfolio.netlify.app/" target="_blank" class="text-white hover:text-gray-400 transition duration-300 ease-in-out">
+                    <i class="fas fa-briefcase text-2xl"></i> Portfolio
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

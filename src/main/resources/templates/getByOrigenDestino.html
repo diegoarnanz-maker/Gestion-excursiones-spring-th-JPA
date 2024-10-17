@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excursiones filtro Origen y Destino</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white">
+    <div class="container mx-auto mt-10 p-5 bg-white rounded shadow-md text-black">
+        <h1 class="text-2xl font-bold mb-4">Excursiones con Destino en <span class="text-red-700" th:text="${destinoIngresado}"></span>:</h1>
+
+        <h2 class="text-xl font-semibold mb-2">Resultado:</h2>
+        <ul class="space-y-2 mb-4">
+            <li class="bg-gray-200 border border-black rounded p-2 flex flex-col" th:each="excursion : ${excursionesOrigenDestino}">
+                <h5 class="text-md font-semibold" th:text="${excursion.descripcion}">Descripción de la excursión</h5>
+                <p class="text-green-600 text-sm">Origen: <span th:text="${excursion.origen}"></span></p>
+                <p class="text-green-600 text-sm">Destino: <span th:text="${excursion.destino}"></span></p>
+                <p class="text-green-600 text-sm">Precio: <span th:text="${excursion.precioUnitario}">0</span> €</p>
+                <a th:href="@{/detalles/{id}(id=${excursion.idExcursion})}" class="mt-2">
+                    <button class="bg-black text-white text-sm px-3 py-1 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                        Detalles
+                    </button>
+                </a>
+            </li>
+        </ul>
+
+        <a class="mt-4 inline-block bg-black text-white font-semibold py-2 px-4 rounded hover:bg-gray-800" href="/">Volver a home</a>
+    </div>
+</body>
+</html>
